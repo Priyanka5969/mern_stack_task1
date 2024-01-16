@@ -1,5 +1,6 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
 //create user register user
 exports.registerController = async (req, res) => {
   try {
@@ -85,10 +86,15 @@ exports.loginController = async (req, res) => {
         message: "Invlid username or password",
       });
     }
+   
+    const tokena = jwt.sign({ email: { email : userModel.email } }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
     return res.status(200).send({
       success: true,
       messgae: "login successfully",
-      user,
+      token:tokena
     });
   } catch (error) {
     console.log(error);

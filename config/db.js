@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const colors = require("colors");
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://user:piyu1234@cluster0.e13ryad.mongodb.net/?retryWrites=true&w=majority');
+    await mongoose.connect('mongodb+srv://user:piyu1234@cluster0.e13ryad.mongodb.net/');
     console.log(
       `Connected to Mongodb Database ${mongoose.connection.host}`.bgMagenta
         .white
